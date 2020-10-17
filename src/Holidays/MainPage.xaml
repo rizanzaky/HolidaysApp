@@ -9,7 +9,7 @@
         <!-- month and today button -->
         <StackLayout Orientation="Horizontal" Margin="15"
                      HorizontalOptions="FillAndExpand">
-            <Label Text="{Binding ActiveMonth}"
+            <Label Text="{Binding ActiveMonth, StringFormat='{0:MMMM, yyyy}'}"
                    FontSize="18"
                    HorizontalOptions="FillAndExpand"
                    VerticalOptions="CenterAndExpand" />
