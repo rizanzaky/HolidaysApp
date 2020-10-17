@@ -13,7 +13,7 @@
                    FontSize="18"
                    HorizontalOptions="FillAndExpand"
                    VerticalOptions="CenterAndExpand" />
-            <Button Text="Today" BindingContext="{Binding SetThisMonthCommand}" />
+            <Button Text="Today" Command="{Binding SetThisMonthCommand}" />
         </StackLayout>
 
         <!-- month view -->
