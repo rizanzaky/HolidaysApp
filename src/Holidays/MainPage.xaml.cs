@@ -11,34 +11,60 @@ namespace Holidays
         public MainPage()
         {
             InitializeComponent();
-            BindingContext = new MainPageViewModel();
-            //SetBinding(BindingContextProperty, new Binding());
+
+            var vm = new MainPageViewModel();
+            UpdateMonth(vm);
+            vm.PropertyChanged += OnPropertyChanged;
+            BindingContext = vm;
         }
 
-        protected override void OnBindingContextChanged()
+        private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            base.OnBindingContextChanged();
+            if (sender is MainPageViewModel vm) UpdateMonth(vm);
+        }
 
-            if (BindingContext is MainPageViewModel vm)
+        private void UpdateMonth(MainPageViewModel vm)
+        {
+            var days = calendarView.Children.Skip(7).OfType<Label>().ToList();
+
+            var count = 1;
+            var dayOfWeek = vm.ActiveMonth.DayOfWeek == 0 ? 7 : (int) vm.ActiveMonth.DayOfWeek;
+            var daysInMonth = DateTime.DaysInMonth(vm.ActiveMonth.Year, vm.ActiveMonth.Month) + dayOfWeek - 1;
+            for (var i = dayOfWeek - 1; i < daysInMonth; i++)
             {
-                var days = calendarView.Children.Skip(7).OfType<Label>().ToList();
-
-                var count = 1;
-                var dayOfWeek = vm.ActiveMonth.DayOfWeek == 0 ? 7 : (int) vm.ActiveMonth.DayOfWeek;
-                var daysInMonth = DateTime.DaysInMonth(vm.ActiveMonth.Year, vm.ActiveMonth.Month) + dayOfWeek - 1;
-                for (var i = dayOfWeek - 1; i < daysInMonth; i++)
-                {
-                    days[i].Text = $"{count}";
-                    count++;
-                }
+                days[i].Text = $"{count}";
+                count++;
             }
         }
     }
 
     public class MainPageViewModel : INotifyPropertyChanged
     {
-        public DateTime ActiveMonth { get; set; } = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-        
+        private DateTime _activeMonth;
+
+        public MainPageViewModel()
+        {
+            ActiveMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            ChangeMonthCommand = new Command(param =>
+            {
+                var direction = param?.ToString();
+                if (!string.IsNullOrEmpty(direction))
+                    ActiveMonth = direction == "Reduce" ? ActiveMonth.AddMonths(-1) : ActiveMonth.AddMonths(1);
+            });
+        }
+
+        public DateTime ActiveMonth
+        {
+            get => _activeMonth;
+            set
+            {
+                _activeMonth = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ActiveMonth)));
+            }
+        }
+
+        public ICommand ChangeMonthCommand { get; set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }
