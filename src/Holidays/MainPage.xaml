@@ -1,20 +1,173 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Holidays.MainPage">
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Holidays.MainPage">
     <StackLayout>
-        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Label Text="Welcome to Xamarin.Forms!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36" />
-        </Frame>
-        <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10" />
-        <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0" />
-        <Label FontSize="16" Padding="30,24,30,0">
-            <Label.FormattedText>
-                <FormattedString>
-                    <FormattedString.Spans>
-                        <Span Text="Learn more at " />
-                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold" />
-                    </FormattedString.Spans>
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
+        <!-- month and today button -->
+        <StackLayout Orientation="Horizontal" Margin="15"
+                     HorizontalOptions="FillAndExpand">
+            <Label Text="January, 2020"
+                   FontSize="18"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="CenterAndExpand" />
+            <Button Text="Today" />
+        </StackLayout>
+
+        <!-- month view -->
+        <Grid x:Name="calendarView" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
+              ColumnDefinitions="*,*,*,*,*,*,*"
+              HorizontalOptions="FillAndExpand">
+            <!-- calendar title -->
+            <Label Grid.Column="0" Grid.Row="0"
+                   Text="Mon" HorizontalTextAlignment="Center"
+                   TextColor="White" BackgroundColor="DarkSlateGray" />
+            <Label Grid.Column="1" Grid.Row="0"
+                   Text="Tue" HorizontalTextAlignment="Center"
+                   TextColor="White" BackgroundColor="DarkSlateGray" />
+            <Label Grid.Column="2" Grid.Row="0"
+                   Text="Wed" HorizontalTextAlignment="Center"
+                   TextColor="White" BackgroundColor="DarkSlateGray" />
+            <Label Grid.Column="3" Grid.Row="0"
+                   Text="Thu" HorizontalTextAlignment="Center"
+                   TextColor="White" BackgroundColor="DarkSlateGray" />
+            <Label Grid.Column="4" Grid.Row="0"
+                   Text="Fri" HorizontalTextAlignment="Center"
+                   TextColor="White" BackgroundColor="DarkSlateGray" />
+            <Label Grid.Column="5" Grid.Row="0"
+                   Text="Sat" HorizontalTextAlignment="Center"
+                   TextColor="White" BackgroundColor="RoyalBlue" />
+            <Label Grid.Column="6" Grid.Row="0"
+                   Text="Sun" HorizontalTextAlignment="Center"
+                   TextColor="White" BackgroundColor="OrangeRed" />
+
+            <!-- calendar week 1 -->
+            <Label Grid.Column="0" Grid.Row="1"
+                   HorizontalTextAlignment="Center"
+                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+            <Label Grid.Column="1" Grid.Row="1"
+                   HorizontalTextAlignment="Center"
+                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+            <Label Grid.Column="2" Grid.Row="1"
+                   HorizontalTextAlignment="Center"
+                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+            <Label Grid.Column="3" Grid.Row="1"
+                   HorizontalTextAlignment="Center"
+                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+            <Label Grid.Column="4" Grid.Row="1"
+                   HorizontalTextAlignment="Center"
+                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+            <Label Grid.Column="5" Grid.Row="1"
+                   HorizontalTextAlignment="Center"
+                   TextColor="DarkSlateGray" BackgroundColor="LightSkyBlue" />
+            <Label Grid.Column="6" Grid.Row="1"
+                   HorizontalTextAlignment="Center"
+                   TextColor="DarkSlateGray" BackgroundColor="LightPink" />
+
+            <!-- calendar week 2 -->
+            <Label Grid.Column="0" Grid.Row="2"
+                   HorizontalTextAlignment="Center"
+                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+            <Label Grid.Column="1" Grid.Row="2"
+                   HorizontalTextAlignment="Center"
+                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+            <Label Grid.Column="2" Grid.Row="2"
+                   HorizontalTextAlignment="Center"
+                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+            <Label Grid.Column="3" Grid.Row="2"
+                   HorizontalTextAlignment="Center"
+                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+            <Label Grid.Column="4" Grid.Row="2"
+                   HorizontalTextAlignment="Center"
+                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+            <Label Grid.Column="5" Grid.Row="2"
+                   HorizontalTextAlignment="Center"
+                   TextColor="DarkSlateGray" BackgroundColor="LightSkyBlue" />
+            <Label Grid.Column="6" Grid.Row="2"
+                   HorizontalTextAlignment="Center"
+                   TextColor="DarkSlateGray" BackgroundColor="LightPink" />
+
+            <!-- calendar week 3 -->
+            <Label Grid.Column="0" Grid.Row="3"
+                   HorizontalTextAlignment="Center"
+                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+            <Label Grid.Column="1" Grid.Row="3"
+                   HorizontalTextAlignment="Center"
+                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+            <Label Grid.Column="2" Grid.Row="3"
+                   HorizontalTextAlignment="Center"
+                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+            <Label Grid.Column="3" Grid.Row="3"
+                   HorizontalTextAlignment="Center"
+                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+            <Label Grid.Column="4" Grid.Row="3"
+                   HorizontalTextAlignment="Center"
+                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+            <Label Grid.Column="5" Grid.Row="3"
+                   HorizontalTextAlignment="Center"
+                   TextColor="DarkSlateGray" BackgroundColor="LightSkyBlue" />
+            <Label Grid.Column="6" Grid.Row="3"
+                   HorizontalTextAlignment="Center"
+                   TextColor="DarkSlateGray" BackgroundColor="LightPink" />
+
+            <!-- calendar week 4 -->
+            <Label Grid.Column="0" Grid.Row="4"
+                   HorizontalTextAlignment="Center"
+                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+            <Label Grid.Column="1" Grid.Row="4"
+                   HorizontalTextAlignment="Center"
+                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+            <Label Grid.Column="2" Grid.Row="4"
+                   HorizontalTextAlignment="Center"
+                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+            <Label Grid.Column="3" Grid.Row="4"
+                   HorizontalTextAlignment="Center"
+                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+            <Label Grid.Column="4" Grid.Row="4"
+                   HorizontalTextAlignment="Center"
+                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+            <Label Grid.Column="5" Grid.Row="4"
+                   HorizontalTextAlignment="Center"
+                   TextColor="DarkSlateGray" BackgroundColor="LightSkyBlue" />
+            <Label Grid.Column="6" Grid.Row="4"
+                   HorizontalTextAlignment="Center"
+                   TextColor="DarkSlateGray" BackgroundColor="LightPink" />
+
+            <!-- calendar week 5 -->
+            <Label Grid.Column="0" Grid.Row="5"
+                   HorizontalTextAlignment="Center"
+                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+            <Label Grid.Column="1" Grid.Row="5"
+                   HorizontalTextAlignment="Center"
+                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+            <Label Grid.Column="2" Grid.Row="5"
+                   HorizontalTextAlignment="Center"
+                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+            <Label Grid.Column="3" Grid.Row="5"
+                   HorizontalTextAlignment="Center"
+                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+            <Label Grid.Column="4" Grid.Row="5"
+                   HorizontalTextAlignment="Center"
+                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+            <Label Grid.Column="5" Grid.Row="5"
+                   HorizontalTextAlignment="Center"
+                   TextColor="DarkSlateGray" BackgroundColor="LightSkyBlue" />
+            <Label Grid.Column="6" Grid.Row="5"
+                   HorizontalTextAlignment="Center"
+                   TextColor="DarkSlateGray" BackgroundColor="LightPink" />
+
+
+        </Grid>
+
+        <!-- holiday types -->
+        <Grid ColumnDefinitions="Auto,*,Auto,*,Auto,*" Margin="15" HorizontalOptions="FillAndExpand">
+            <Label Grid.Column="0" Text="*" />
+            <Label Grid.Column="1" Text="Public" />
+            <Label Grid.Column="2" Text="^" />
+            <Label Grid.Column="3" Text="Bank" />
+            <Label Grid.Column="4" Text="#" />
+            <Label Grid.Column="5" Text="Mercantile" />
+        </Grid>
+
+        <!-- holidays for month -->
     </StackLayout>
 </ContentPage>
