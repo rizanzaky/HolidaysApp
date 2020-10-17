@@ -27,12 +27,12 @@ namespace Holidays
         {
             var days = calendarView.Children.Skip(7).OfType<Label>().ToList();
 
-            var count = 1;
             var dayOfWeek = vm.ActiveMonth.DayOfWeek == 0 ? 7 : (int) vm.ActiveMonth.DayOfWeek;
-            var daysInMonth = DateTime.DaysInMonth(vm.ActiveMonth.Year, vm.ActiveMonth.Month) + dayOfWeek - 1;
-            for (var i = dayOfWeek - 1; i < daysInMonth; i++)
+            var count = 2 - dayOfWeek;
+            var daysInMonth = DateTime.DaysInMonth(vm.ActiveMonth.Year, vm.ActiveMonth.Month);
+            foreach (var day in days)
             {
-                days[i].Text = $"{count}";
+                day.Text = count > 0 && count <= daysInMonth ? $"{count}" : string.Empty;
                 count++;
             }
         }
