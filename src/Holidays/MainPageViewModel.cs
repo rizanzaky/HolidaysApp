@@ -5,6 +5,8 @@ using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -58,8 +60,23 @@ namespace Holidays
         private async Task InitializeAsync()
         {
             ActiveMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-            await LoadAnnualHolidaysAsync();
+            await LoadAnnualHolidaysFromWeb();
             Reload(GetHolidaysForMonth());
+        }
+
+        private async Task LoadAnnualHolidaysFromWeb()
+        {
+            var httpClient = new HttpClient();
+            var response = await httpClient.GetAsync("https://github.com/rizanzaky/HolidaysApp/blob/main/src/Holidays/GetAnnualHolidays.json?raw=true");
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadAsStringAsync();
+                var holidays = JsonConvert.DeserializeObject<IEnumerable<AnnualHolidaysModel>>(result, new JsonSerializerSettings
+                {
+                    Culture = CultureInfo.InvariantCulture
+                });
+                AnnualHolidays.AddRange(holidays);
+            }
         }
 
         private async Task LoadAnnualHolidaysAsync()
