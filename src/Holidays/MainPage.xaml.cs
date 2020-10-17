@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
-using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Holidays
@@ -36,40 +35,5 @@ namespace Holidays
                 count++;
             }
         }
-    }
-
-    public class MainPageViewModel : INotifyPropertyChanged
-    {
-        private DateTime _activeMonth;
-
-        public MainPageViewModel()
-        {
-            ActiveMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-            ChangeMonthCommand = new Command(param =>
-            {
-                var direction = param?.ToString();
-                if (!string.IsNullOrEmpty(direction))
-                    ActiveMonth = direction == "Reduce" ? ActiveMonth.AddMonths(-1) : ActiveMonth.AddMonths(1);
-            });
-            SetThisMonthCommand = new Command(() =>
-            {
-                ActiveMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-            });
-        }
-
-        public DateTime ActiveMonth
-        {
-            get => _activeMonth;
-            set
-            {
-                _activeMonth = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ActiveMonth)));
-            }
-        }
-
-        public ICommand ChangeMonthCommand { get; set; }
-        public ICommand SetThisMonthCommand { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

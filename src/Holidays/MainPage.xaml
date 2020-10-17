@@ -4,8 +4,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:common="clr-namespace:Holidays;assembly=Holidays"
              x:Class="Holidays.MainPage"
-             x:DataType="common:MainPageViewModel">
-    <StackLayout>
+             x:DataType="{x:Type common:MainPageViewModel}">
+    <Grid RowDefinitions="Auto,Auto,Auto,*">
+        
         <!-- month and today button -->
         <StackLayout Orientation="Horizontal" Margin="15"
                      HorizontalOptions="FillAndExpand">
@@ -17,7 +18,7 @@
         </StackLayout>
 
         <!-- month view -->
-        <Grid x:Name="calendarView" Margin="15,0"
+        <Grid x:Name="calendarView" Grid.Row="1" Margin="15,0"
               RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
               ColumnDefinitions="*,*,*,*,*,*,*"
               HorizontalOptions="FillAndExpand">
@@ -193,7 +194,7 @@
         </Grid>
 
         <!-- holiday types -->
-        <Grid ColumnDefinitions="Auto,*,Auto,*,Auto,*" Margin="15" HorizontalOptions="FillAndExpand">
+        <Grid Grid.Row="2" ColumnDefinitions="Auto,*,Auto,*,Auto,*" Margin="15" HorizontalOptions="FillAndExpand">
             <Label Grid.Column="0" Text="*" />
             <Label Grid.Column="1" Text="Public" />
             <Label Grid.Column="2" Text="^" />
@@ -203,5 +204,36 @@
         </Grid>
 
         <!-- holidays for month -->
-    </StackLayout>
+        <ListView Grid.Row="3" Margin="15,0" ItemsSource="{Binding Holidays}">
+               <ListView.Header>
+                      <Label Text="Holidays"
+                             FontSize="16"
+                             TextTransform="Uppercase" />
+               </ListView.Header>
+               
+               <ListView.ItemTemplate>
+                      <DataTemplate x:DataType="{x:Type common:MonthHolidaysModel}">
+                             <ViewCell>
+                                    <StackLayout Orientation="Horizontal" Spacing="15">
+                                           <Label Text="{Binding Date, StringFormat='{0:dd}'}"
+                                                  FontSize="18"
+                                                  FontAttributes="Bold"
+                                                  WidthRequest="22"
+                                                  VerticalOptions="CenterAndExpand"
+                                                  VerticalTextAlignment="Center" />
+                                           <Label Text="{Binding Type}"
+                                                  FontSize="12"
+                                                  WidthRequest="40"
+                                                  VerticalOptions="CenterAndExpand"
+                                                  VerticalTextAlignment="Center"  />
+                                           <Label Text="{Binding Name}"
+                                                  FontSize="17"
+                                                  VerticalOptions="CenterAndExpand"
+                                                  VerticalTextAlignment="Center"  />
+                                    </StackLayout>
+                             </ViewCell>
+                      </DataTemplate>
+               </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
 </ContentPage>
