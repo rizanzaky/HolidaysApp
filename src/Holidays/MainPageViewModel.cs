@@ -6,6 +6,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Newtonsoft.Json;
 using Xamarin.Forms;
@@ -18,10 +19,7 @@ namespace Holidays
 
         public MainPageViewModel()
         {
-            Initialize();
-
-            ActiveMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-            Reload(GetHolidaysForMonth());
+            _ = InitializeAsync();
 
             ChangeMonthCommand = new Command(param =>
             {
@@ -57,13 +55,17 @@ namespace Holidays
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void Initialize()
+        private async Task InitializeAsync()
         {
-            LoadAnnualHolidays();
+            ActiveMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            await LoadAnnualHolidaysAsync();
+            Reload(GetHolidaysForMonth());
         }
 
-        private void LoadAnnualHolidays()
+        private async Task LoadAnnualHolidaysAsync()
         {
+            await Task.Delay(3000);
+            
             var assembly = Assembly.GetExecutingAssembly();
             const string resourceName = "Holidays.GetAnnualHolidays.json";
 
