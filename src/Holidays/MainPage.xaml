@@ -1,7 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Holidays.MainPage">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:common="clr-namespace:Holidays;assembly=Holidays"
+             x:Class="Holidays.MainPage"
+             x:DataType="common:MainPageViewModel">
     <StackLayout>
         <!-- month and today button -->
         <StackLayout Orientation="Horizontal" Margin="15"
@@ -10,7 +13,7 @@
                    FontSize="18"
                    HorizontalOptions="FillAndExpand"
                    VerticalOptions="CenterAndExpand" />
-            <Button Text="Today" />
+            <Button Text="Today" BindingContext="{Binding SetThisMonthCommand}" />
         </StackLayout>
 
         <!-- month view -->
@@ -21,8 +24,8 @@
                
                <!-- swipe action -->
                <Grid.GestureRecognizers>
-                      <SwipeGestureRecognizer Direction="Left" Command="{Binding ChangeMonthCommand}" CommandParameter="Reduce" />
-                      <SwipeGestureRecognizer Direction="Right" Command="{Binding ChangeMonthCommand}" CommandParameter="Add" />
+                      <SwipeGestureRecognizer Direction="Left" Command="{Binding ChangeMonthCommand}" CommandParameter="Add" />
+                      <SwipeGestureRecognizer Direction="Right" Command="{Binding ChangeMonthCommand}" CommandParameter="Reduce" />
                </Grid.GestureRecognizers>
                
                <!-- calendar title -->

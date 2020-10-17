@@ -51,6 +51,10 @@ namespace Holidays
                 if (!string.IsNullOrEmpty(direction))
                     ActiveMonth = direction == "Reduce" ? ActiveMonth.AddMonths(-1) : ActiveMonth.AddMonths(1);
             });
+            SetThisMonthCommand = new Command(() =>
+            {
+                ActiveMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            });
         }
 
         public DateTime ActiveMonth
@@ -64,6 +68,7 @@ namespace Holidays
         }
 
         public ICommand ChangeMonthCommand { get; set; }
+        public ICommand SetThisMonthCommand { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
     }
