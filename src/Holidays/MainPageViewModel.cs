@@ -2,10 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Net.Http;
-using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Newtonsoft.Json;
@@ -66,7 +64,25 @@ namespace Holidays
         {
             MonthModel = new MonthModel {ActiveMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1)};
 
-            await LoadAnnualHolidaysAsync();
+            LoadHolidaysFromCache();
+            await UpdateHolidaysCacheAsync();
+        }
+
+        private async Task UpdateHolidaysCacheAsync()
+        {
+            var holidays = await GetAnnualHolidaysFromWeb();
+            if (holidays == null)
+                return;
+
+            AnnualHolidays.Clear();
+            AnnualHolidays.AddRange(holidays);
+
+            if (Application.Current.Properties.ContainsKey("holidays"))
+                Application.Current.Properties["holidays"] = JsonConvert.SerializeObject(holidays);
+            else
+                Application.Current.Properties.Add("holidays", JsonConvert.SerializeObject(holidays));
+            await Application.Current.SavePropertiesAsync();
+
             MonthModel = new MonthModel
             {
                 ActiveMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1),
@@ -74,41 +90,44 @@ namespace Holidays
             };
         }
 
-        private async Task LoadAnnualHolidaysFromWeb()
+        private void LoadHolidaysFromCache()
+        {
+            if (Application.Current.Properties.TryGetValue("holidays", out var rawHolidays) &&
+                rawHolidays is string serialHolidays)
+            {
+                var holidays = JsonConvert.DeserializeObject<IEnumerable<AnnualHolidaysModel>>(serialHolidays,
+                    new JsonSerializerSettings
+                    {
+                        Culture = CultureInfo.InvariantCulture
+                    });
+
+                if (holidays == null)
+                    return;
+
+                AnnualHolidays.Clear();
+                AnnualHolidays.AddRange(holidays);
+
+                MonthModel = new MonthModel
+                {
+                    ActiveMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1),
+                    Holidays = GetHolidaysForMonth(DateTime.Now.Year, DateTime.Now.Month)
+                };
+            }
+        }
+
+        private async Task<IEnumerable<AnnualHolidaysModel>> GetAnnualHolidaysFromWeb()
         {
             var httpClient = new HttpClient();
             var response = await httpClient.GetAsync(
                 "https://github.com/rizanzaky/HolidaysApp/blob/main/src/Holidays/GetAnnualHolidays.json?raw=true");
-            if (response.IsSuccessStatusCode)
-            {
-                var result = await response.Content.ReadAsStringAsync();
-                var holidays = JsonConvert.DeserializeObject<IEnumerable<AnnualHolidaysModel>>(result,
-                    new JsonSerializerSettings
-                    {
-                        Culture = CultureInfo.InvariantCulture
-                    });
-                AnnualHolidays.AddRange(holidays);
-            }
-        }
+            if (!response.IsSuccessStatusCode) return null;
 
-        private async Task LoadAnnualHolidaysAsync()
-        {
-            await Task.Delay(3000);
-
-            var assembly = Assembly.GetExecutingAssembly();
-            const string resourceName = "Holidays.GetAnnualHolidays.json";
-
-            using (var stream = assembly.GetManifestResourceStream(resourceName))
-            using (var reader = new StreamReader(stream))
-            {
-                var result = reader.ReadToEnd();
-                var holidays = JsonConvert.DeserializeObject<IEnumerable<AnnualHolidaysModel>>(result,
-                    new JsonSerializerSettings
-                    {
-                        Culture = CultureInfo.InvariantCulture
-                    });
-                AnnualHolidays.AddRange(holidays);
-            }
+            var result = await response.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<IEnumerable<AnnualHolidaysModel>>(result,
+                new JsonSerializerSettings
+                {
+                    Culture = CultureInfo.InvariantCulture
+                });
         }
 
         private IEnumerable<MonthHolidaysModel> GetHolidaysForMonth(int year, int month)
