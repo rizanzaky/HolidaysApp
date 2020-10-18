@@ -44,10 +44,12 @@ namespace Holidays
                     vm.MonthModel.ActiveMonth.Month == DateTime.Now.Month && DateTime.Now.Day == count)
                 {
                     day.FontAttributes = FontAttributes.Bold;
+                    day.TextDecorations = TextDecorations.Underline;
                 }
                 else
                 {
                     day.FontAttributes = FontAttributes.None;
+                    day.TextDecorations = TextDecorations.None;
                 }
                 count++;
             }
