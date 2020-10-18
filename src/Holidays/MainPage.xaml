@@ -5,236 +5,238 @@
              xmlns:common="clr-namespace:Holidays;assembly=Holidays"
              x:Class="Holidays.MainPage"
              x:DataType="{x:Type common:MainPageViewModel}">
-    <Grid RowDefinitions="Auto,Auto,Auto,*">
-        
-        <!-- month and today button -->
-        <StackLayout Orientation="Horizontal" Margin="15"
-                     HorizontalOptions="FillAndExpand">
-            <Label Text="{Binding MonthModel.ActiveMonth, StringFormat='{0:MMMM, yyyy}'}"
-                   FontSize="18"
-                   HorizontalOptions="FillAndExpand"
-                   VerticalOptions="CenterAndExpand" />
-            <Button Text="Today" Command="{Binding SetThisMonthCommand}" />
-        </StackLayout>
+	<Grid RowDefinitions="Auto,Auto,Auto,*" RowSpacing="10">
 
-        <!-- month view -->
-        <Grid x:Name="calendarView" Grid.Row="1" Margin="15,0"
-              RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
-              ColumnDefinitions="*,*,*,*,*,*,*"
-              HorizontalOptions="FillAndExpand">
+		<!-- month and today button -->
+		<StackLayout Orientation="Horizontal" Margin="15,10,15,0"
+		             HorizontalOptions="FillAndExpand">
+			<Label Text="{Binding MonthModel.ActiveMonth, StringFormat='{0:MMMM, yyyy}'}"
+			       FontSize="22"
+			       HorizontalOptions="FillAndExpand"
+			       VerticalOptions="CenterAndExpand" />
+			<Button Text="See Today" Command="{Binding SetThisMonthCommand}" />
+		</StackLayout>
 
-            <!-- swipe action -->
-            <Grid.GestureRecognizers>
-                <SwipeGestureRecognizer Direction="Left" Command="{Binding ChangeMonthCommand}" CommandParameter="Add" />
-                <SwipeGestureRecognizer Direction="Right" Command="{Binding ChangeMonthCommand}"
-                                        CommandParameter="Reduce" />
-            </Grid.GestureRecognizers>
+		<!-- month view -->
+		<Grid x:Name="calendarView" Grid.Row="1" Margin="5,0" ColumnSpacing="3" RowSpacing="3"
+		      RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
+		      ColumnDefinitions="*,*,*,*,*,*,*"
+		      HorizontalOptions="FillAndExpand">
 
-            <!-- calendar title -->
-            <Label Grid.Column="0" Grid.Row="0"
-                   Text="Mon" HorizontalTextAlignment="Center"
-                   TextColor="White" BackgroundColor="DarkSlateGray" />
-            <Label Grid.Column="1" Grid.Row="0"
-                   Text="Tue" HorizontalTextAlignment="Center"
-                   TextColor="White" BackgroundColor="DarkSlateGray" />
-            <Label Grid.Column="2" Grid.Row="0"
-                   Text="Wed" HorizontalTextAlignment="Center"
-                   TextColor="White" BackgroundColor="DarkSlateGray" />
-            <Label Grid.Column="3" Grid.Row="0"
-                   Text="Thu" HorizontalTextAlignment="Center"
-                   TextColor="White" BackgroundColor="DarkSlateGray" />
-            <Label Grid.Column="4" Grid.Row="0"
-                   Text="Fri" HorizontalTextAlignment="Center"
-                   TextColor="White" BackgroundColor="DarkSlateGray" />
-            <Label Grid.Column="5" Grid.Row="0"
-                   Text="Sat" HorizontalTextAlignment="Center"
-                   TextColor="White" BackgroundColor="RoyalBlue" />
-            <Label Grid.Column="6" Grid.Row="0"
-                   Text="Sun" HorizontalTextAlignment="Center"
-                   TextColor="White" BackgroundColor="OrangeRed" />
+			<!-- swipe action -->
+			<Grid.GestureRecognizers>
+				<SwipeGestureRecognizer Direction="Left" Command="{Binding ChangeMonthCommand}" CommandParameter="Add" />
+				<SwipeGestureRecognizer Direction="Right" Command="{Binding ChangeMonthCommand}"
+				                        CommandParameter="Reduce" />
+			</Grid.GestureRecognizers>
 
-            <!-- calendar week 1 -->
-            <Label Grid.Column="0" Grid.Row="1"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
-            <Label Grid.Column="1" Grid.Row="1"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
-            <Label Grid.Column="2" Grid.Row="1"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
-            <Label Grid.Column="3" Grid.Row="1"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
-            <Label Grid.Column="4" Grid.Row="1"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
-            <Label Grid.Column="5" Grid.Row="1"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightSkyBlue" />
-            <Label Grid.Column="6" Grid.Row="1"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightPink" />
+			<!-- calendar title -->
+			<Label Grid.Column="0" Grid.Row="0"
+			       Text="Mon" FontSize="15" FontAttributes="Bold" HorizontalTextAlignment="Center"
+			       TextColor="White" Padding="0,3" BackgroundColor="DarkSlateGray" />
+			<Label Grid.Column="1" Grid.Row="0"
+			       Text="Tue" FontSize="15" FontAttributes="Bold" HorizontalTextAlignment="Center"
+			       TextColor="White" Padding="0,3" BackgroundColor="DarkSlateGray" />
+			<Label Grid.Column="2" Grid.Row="0"
+			       Text="Wed" FontSize="15" FontAttributes="Bold" HorizontalTextAlignment="Center"
+			       TextColor="White" Padding="0,3" BackgroundColor="DarkSlateGray" />
+			<Label Grid.Column="3" Grid.Row="0"
+			       Text="Thu" FontSize="15" FontAttributes="Bold" HorizontalTextAlignment="Center"
+			       TextColor="White" Padding="0,3" BackgroundColor="DarkSlateGray" />
+			<Label Grid.Column="4" Grid.Row="0"
+			       Text="Fri" FontSize="15" FontAttributes="Bold" HorizontalTextAlignment="Center"
+			       TextColor="White" Padding="0,3" BackgroundColor="DarkSlateGray" />
+			<Label Grid.Column="5" Grid.Row="0"
+			       Text="Sat" FontSize="15" FontAttributes="Bold" HorizontalTextAlignment="Center"
+			       TextColor="White" Padding="0,3" BackgroundColor="RoyalBlue" />
+			<Label Grid.Column="6" Grid.Row="0"
+			       Text="Sun" FontSize="15" FontAttributes="Bold" HorizontalTextAlignment="Center"
+			       TextColor="White" Padding="0,3" BackgroundColor="OrangeRed" />
 
-            <!-- calendar week 2 -->
-            <Label Grid.Column="0" Grid.Row="2"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
-            <Label Grid.Column="1" Grid.Row="2"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
-            <Label Grid.Column="2" Grid.Row="2"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
-            <Label Grid.Column="3" Grid.Row="2"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
-            <Label Grid.Column="4" Grid.Row="2"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
-            <Label Grid.Column="5" Grid.Row="2"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightSkyBlue" />
-            <Label Grid.Column="6" Grid.Row="2"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightPink" />
+			<!-- calendar week 1 -->
+			<Label Grid.Column="0" Grid.Row="1" Text="1"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+			<Label Grid.Column="1" Grid.Row="1" Text="2"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+			<Label Grid.Column="2" Grid.Row="1" Text="3"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+			<Label Grid.Column="3" Grid.Row="1" Text="4"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+			<Label Grid.Column="4" Grid.Row="1" Text="5"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+			<Label Grid.Column="5" Grid.Row="1" Text="6"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightSkyBlue" />
+			<Label Grid.Column="6" Grid.Row="1" Text="7"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightPink" />
 
-            <!-- calendar week 3 -->
-            <Label Grid.Column="0" Grid.Row="3"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
-            <Label Grid.Column="1" Grid.Row="3"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
-            <Label Grid.Column="2" Grid.Row="3"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
-            <Label Grid.Column="3" Grid.Row="3"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
-            <Label Grid.Column="4" Grid.Row="3"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
-            <Label Grid.Column="5" Grid.Row="3"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightSkyBlue" />
-            <Label Grid.Column="6" Grid.Row="3"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightPink" />
+			<!-- calendar week 2 -->
+			<Label Grid.Column="0" Grid.Row="2"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+			<Label Grid.Column="1" Grid.Row="2"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+			<Label Grid.Column="2" Grid.Row="2"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+			<Label Grid.Column="3" Grid.Row="2"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+			<Label Grid.Column="4" Grid.Row="2"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+			<Label Grid.Column="5" Grid.Row="2"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightSkyBlue" />
+			<Label Grid.Column="6" Grid.Row="2"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightPink" />
 
-            <!-- calendar week 4 -->
-            <Label Grid.Column="0" Grid.Row="4"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
-            <Label Grid.Column="1" Grid.Row="4"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
-            <Label Grid.Column="2" Grid.Row="4"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
-            <Label Grid.Column="3" Grid.Row="4"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
-            <Label Grid.Column="4" Grid.Row="4"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
-            <Label Grid.Column="5" Grid.Row="4"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightSkyBlue" />
-            <Label Grid.Column="6" Grid.Row="4"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightPink" />
+			<!-- calendar week 3 -->
+			<Label Grid.Column="0" Grid.Row="3"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+			<Label Grid.Column="1" Grid.Row="3"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+			<Label Grid.Column="2" Grid.Row="3"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+			<Label Grid.Column="3" Grid.Row="3"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+			<Label Grid.Column="4" Grid.Row="3"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+			<Label Grid.Column="5" Grid.Row="3"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightSkyBlue" />
+			<Label Grid.Column="6" Grid.Row="3"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightPink" />
 
-            <!-- calendar week 5 -->
-            <Label Grid.Column="0" Grid.Row="5"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
-            <Label Grid.Column="1" Grid.Row="5"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
-            <Label Grid.Column="2" Grid.Row="5"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
-            <Label Grid.Column="3" Grid.Row="5"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
-            <Label Grid.Column="4" Grid.Row="5"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
-            <Label Grid.Column="5" Grid.Row="5"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightSkyBlue" />
-            <Label Grid.Column="6" Grid.Row="5"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightPink" />
+			<!-- calendar week 4 -->
+			<Label Grid.Column="0" Grid.Row="4"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+			<Label Grid.Column="1" Grid.Row="4"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+			<Label Grid.Column="2" Grid.Row="4"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+			<Label Grid.Column="3" Grid.Row="4"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+			<Label Grid.Column="4" Grid.Row="4"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+			<Label Grid.Column="5" Grid.Row="4"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightSkyBlue" />
+			<Label Grid.Column="6" Grid.Row="4"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightPink" />
 
-            <!-- calendar week 6 -->
-            <Label Grid.Column="0" Grid.Row="6"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
-            <Label Grid.Column="1" Grid.Row="6"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
-            <Label Grid.Column="2" Grid.Row="6"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
-            <Label Grid.Column="3" Grid.Row="6"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
-            <Label Grid.Column="4" Grid.Row="6"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightGray" />
-            <Label Grid.Column="5" Grid.Row="6"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightSkyBlue" />
-            <Label Grid.Column="6" Grid.Row="6"
-                   HorizontalTextAlignment="Center"
-                   TextColor="DarkSlateGray" BackgroundColor="LightPink" />
+			<!-- calendar week 5 -->
+			<Label Grid.Column="0" Grid.Row="5"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+			<Label Grid.Column="1" Grid.Row="5"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+			<Label Grid.Column="2" Grid.Row="5"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+			<Label Grid.Column="3" Grid.Row="5"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+			<Label Grid.Column="4" Grid.Row="5"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+			<Label Grid.Column="5" Grid.Row="5"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightSkyBlue" />
+			<Label Grid.Column="6" Grid.Row="5"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightPink" />
 
-        </Grid>
+			<!-- calendar week 6 -->
+			<Label Grid.Column="0" Grid.Row="6"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+			<Label Grid.Column="1" Grid.Row="6"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+			<Label Grid.Column="2" Grid.Row="6"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+			<Label Grid.Column="3" Grid.Row="6"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+			<Label Grid.Column="4" Grid.Row="6"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightGray" />
+			<Label Grid.Column="5" Grid.Row="6"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightSkyBlue" />
+			<Label Grid.Column="6" Grid.Row="6"
+			       HorizontalTextAlignment="Center" FontSize="20" Padding="0,2"
+			       TextColor="DarkSlateGray" BackgroundColor="LightPink" />
 
-        <!-- holiday types -->
-        <Grid Grid.Row="2" ColumnDefinitions="Auto,*,Auto,*,Auto,*" Margin="15" HorizontalOptions="FillAndExpand">
-            <Label Grid.Column="0" Text="*" />
-            <Label Grid.Column="1" Text="Public" />
-            <Label Grid.Column="2" Text="^" />
-            <Label Grid.Column="3" Text="Bank" />
-            <Label Grid.Column="4" Text="#" />
-            <Label Grid.Column="5" Text="Mercantile" />
-        </Grid>
+		</Grid>
 
-        <!-- holidays for month -->
-        <ListView Grid.Row="3" HasUnevenRows="True" Margin="15,0" ItemsSource="{Binding MonthModel.Holidays}">
-               <ListView.Header>
-                      <Label Text="Holidays"
-                             FontSize="16"
-                             TextTransform="Uppercase" />
-               </ListView.Header>
-               
-               <ListView.ItemTemplate>
-                      <DataTemplate x:DataType="{x:Type common:MonthHolidaysModel}">
-                             <ViewCell>
-                                    <StackLayout Orientation="Horizontal" Spacing="15" Padding="0,15">
-                                           <Label Text="{Binding Date, StringFormat='{0:dd}'}"
-                                                  FontSize="18"
-                                                  FontAttributes="Bold"
-                                                  WidthRequest="26"
-                                                  VerticalOptions="StartAndExpand"
-                                                  VerticalTextAlignment="Center" />
-                                           <Label Text="{Binding Type}"
-                                                  Margin="0,5"
-                                                  FontSize="12"
-                                                  WidthRequest="40"
-                                                  VerticalOptions="StartAndExpand"
-                                                  VerticalTextAlignment="Center"  />
-                                           <Label Text="{Binding Name}"
-                                                  FontSize="17"
-                                                  VerticalOptions="StartAndExpand"
-                                                  VerticalTextAlignment="Center"  />
-                                    </StackLayout>
-                             </ViewCell>
-                      </DataTemplate>
-               </ListView.ItemTemplate>
-        </ListView>
-    </Grid>
+		<!-- holiday types -->
+		<StackLayout Grid.Row="2" Margin="15,15,15,0" HorizontalOptions="FillAndExpand" Orientation="Horizontal">
+			<Label HorizontalOptions="FillAndExpand" FontSize="12" TextColor="#FFC300" Text="F : Full Moon" />
+			
+			<Label HorizontalOptions="FillAndExpand" FontSize="12" TextColor="#FF5733" Text="P : Public" />
+			
+			<Label HorizontalOptions="FillAndExpand" FontSize="12" TextColor="#3371ff" Text="B : Bank" />
+			
+			<Label TextColor="#9e2cc8" FontSize="12" Text="M : Mercantile" />
+			
+		</StackLayout>
+
+		<!-- holidays for month -->
+		<ListView Grid.Row="3" HasUnevenRows="True" Margin="15,0" ItemsSource="{Binding MonthModel.Holidays}">
+			<ListView.Header>
+				<Label Text="Holidays"
+				       FontSize="16"
+				       TextTransform="Uppercase" />
+			</ListView.Header>
+
+			<ListView.ItemTemplate>
+				<DataTemplate x:DataType="{x:Type common:MonthHolidaysModel}">
+					<ViewCell>
+						<StackLayout Orientation="Horizontal" Spacing="15" Padding="0,15">
+							<Label Text="{Binding Date, StringFormat='{0:dd}'}"
+							       FontSize="18"
+							       FontAttributes="Bold"
+							       WidthRequest="26"
+							       VerticalOptions="StartAndExpand"
+							       VerticalTextAlignment="Center" />
+							<Label Text="{Binding Type}"
+							       Margin="0,5"
+							       FontSize="12"
+							       WidthRequest="40"
+							       VerticalOptions="StartAndExpand"
+							       VerticalTextAlignment="Center" />
+							<Label Text="{Binding Name}"
+							       FontSize="17"
+							       VerticalOptions="StartAndExpand"
+							       VerticalTextAlignment="Center" />
+						</StackLayout>
+					</ViewCell>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+	</Grid>
 </ContentPage>
