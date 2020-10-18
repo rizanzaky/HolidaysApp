@@ -10,7 +10,7 @@
         <!-- month and today button -->
         <StackLayout Orientation="Horizontal" Margin="15"
                      HorizontalOptions="FillAndExpand">
-            <Label Text="{Binding ActiveMonth, StringFormat='{0:MMMM, yyyy}'}"
+            <Label Text="{Binding MonthModel.ActiveMonth, StringFormat='{0:MMMM, yyyy}'}"
                    FontSize="18"
                    HorizontalOptions="FillAndExpand"
                    VerticalOptions="CenterAndExpand" />
@@ -204,7 +204,7 @@
         </Grid>
 
         <!-- holidays for month -->
-        <ListView Grid.Row="3" Margin="15,0" ItemsSource="{Binding Holidays}">
+        <ListView Grid.Row="3" Margin="15,0" ItemsSource="{Binding MonthModel.Holidays}">
                <ListView.Header>
                       <Label Text="Holidays"
                              FontSize="16"
