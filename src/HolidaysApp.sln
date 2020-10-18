@@ -7,6 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Holidays.iOS", "Holidays.iO
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Holidays", "Holidays\Holidays.csproj", "{AB7DB243-DC7F-4796-BAB4-50FF6628A8AB}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{B73A0302-952E-42D6-925D-ABCB95684477}"
+				ProjectSection(SolutionItems) = preProject
+					..\data\GetAnnualHolidays.json = ..\data\GetAnnualHolidays.json
+				EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
