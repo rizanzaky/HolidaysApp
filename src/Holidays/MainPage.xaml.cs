@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using Xamarin.Forms;
@@ -19,7 +20,8 @@ namespace Holidays
 
         private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (sender is MainPageViewModel vm && e.PropertyName == nameof(MainPageViewModel.MonthModel)) UpdateMonth(vm);
+            if (sender is MainPageViewModel vm && e.PropertyName == nameof(MainPageViewModel.MonthModel))
+                UpdateMonth(vm);
         }
 
         private void UpdateMonth(MainPageViewModel vm)
@@ -31,23 +33,39 @@ namespace Holidays
             var daysInMonth = DateTime.DaysInMonth(vm.MonthModel.ActiveMonth.Year, vm.MonthModel.ActiveMonth.Month);
             foreach (var day in days)
             {
-                var dayHolidays = vm.MonthModel.Holidays?.Where(w => w.Date.Day == count).OrderBy(o => o.Type).FirstOrDefault();
+                var dayHolidays = vm.MonthModel.Holidays?.Where(w => w.Date.Day == count).ToList();
 
-                day.BackgroundColor = dayHolidays == null ? Color.Blue : Color.ForestGreen;
-                
+                day.BackgroundColor = dayHolidays?.Any() ?? false
+                    ? GetHolidayColor(dayHolidays)
+                    : GetColor(dayOfWeek, count);
+
                 day.Text = count > 0 && count <= daysInMonth ? $"{count}" : string.Empty;
+                if (vm.MonthModel.ActiveMonth.Year == DateTime.Now.Year &&
+                    vm.MonthModel.ActiveMonth.Month == DateTime.Now.Month && DateTime.Now.Day == count)
+                {
+                    day.FontAttributes = FontAttributes.Bold;
+                }
+                else
+                {
+                    day.FontAttributes = FontAttributes.None;
+                }
                 count++;
             }
+        }
 
-            // if (vm.ActiveMonth.Year == DateTime.Now.Year && vm.ActiveMonth.Month == DateTime.Now.Month)
-            // {
-            //     calendarView.Children[0] = new Frame
-            //     {
-            //         HasShadow = false,
-            //         BorderColor = Color.ForestGreen,
-            //         Content = calendarView.Children[0]
-            //     };
-            // }
+        private Color GetHolidayColor(IEnumerable<MonthHolidaysModel> dayHolidays)
+        {
+            var isPoya = dayHolidays.OrderBy(o => o.Type).First().Type.StartsWith("F");
+            return isPoya ? Color.Yellow : Color.PaleVioletRed;
+        }
+
+        private Color GetColor(int dayOfWeek, int day)
+        {
+            var sunday = dayOfWeek == 1 ? 0 : 7 - dayOfWeek + 1;
+            var saturday = dayOfWeek == 7 ? 0 : 7 - dayOfWeek;
+            if (day % 7 == sunday) return Color.LightPink;
+            if (day % 7 == saturday) return Color.LightSkyBlue;
+            return Color.LightGray;
         }
     }
 }
