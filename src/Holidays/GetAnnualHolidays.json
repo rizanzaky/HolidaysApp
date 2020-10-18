@@ -142,21 +142,43 @@
   {
     "year": "2020",
     "holidays": [
-      { "name": "Hajj festival", "date": "2020-02-05T00:00:00+00:00", "type": "P, B" },
-      { "name": "Poson poya", "date": "2020-02-05T00:00:00+00:00", "type": "P, B, M" },
-      { "name": "Deepavali", "date": "2020-02-05T00:00:00+00:00", "type": "P, B" },
-      { "name": "Asala poya", "date": "2020-02-05T00:00:00+00:00", "type": "P, B, M" },
-      { "name": "Ramazan festival", "date": "2020-04-05T00:00:00+00:00", "type": "P, B" },
-      { "name": "May day", "date": "2020-04-05T00:00:00+00:00", "type": "P" },
-      { "name": "Duruthu Poya", "date": "2020-04-05T00:00:00+00:00", "type": "P, B, M" },
-      { "name": "Christmas", "date": "2020-06-05T00:00:00+00:00", "type": "P, B" },
-      { "name": "Easter", "date": "2020-06-05T00:00:00+00:00", "type": "P, B" },
-      { "name": "Navam poya", "date": "2020-06-05T00:00:00+00:00", "type": "P, B, M" },
-      { "name": "Independence day", "date": "2020-06-05T00:00:00+00:00", "type": "P, B" },
-      { "name": "Wesak poya", "date": "2020-01-05T00:00:00+00:00", "type": "P, B" },
-      { "name": "Childrens day", "date": "2020-01-05T00:00:00+00:00", "type": "P" },
-      { "name": "Sinhala & hindu new year", "date": "2020-05-05T00:00:00+00:00", "type": "P, B" },
-      { "name": "Madin poya", "date": "2020-10-05T00:00:00+00:00", "type": "P, B" }
+      { "name": "Duruthu full moon poya day", "date": "2020-01-10T00:00:00+00:00", "type": "F,P,B,M" },
+      { "name": "Thaipongal day", "date": "2020-01-15T00:00:00+00:00", "type": "P,B,M" },
+      
+      { "name": "Sri Lankan national day", "date": "2020-02-04T00:00:00+00:00", "type": "P,B,M" },
+      { "name": "Nawam full moon poya", "date": "2020-02-08T00:00:00+00:00", "type": "F,P,B,M" },
+      { "name": "Maha Shiva Rathri day", "date": "2020-02-21T00:00:00+00:00", "type": "P,B" },
+      
+      { "name": "Medin full moon poya day", "date": "2020-03-09T00:00:00+00:00", "type": "F,P,B,M" },
+      
+      { "name": "Bak full moon poya day", "date": "2020-04-07T00:00:00+00:00", "type": "F,P,B,M" },
+      { "name": "Good Friday", "date": "2020-04-10T00:00:00+00:00", "type": "P,B" },
+      { "name": "Day prior to Sinhala & Hindu new year", "date": "2020-04-12T00:00:00+00:00", "type": "P,B,M" },
+      { "name": "Sinhala & Hindu new year day", "date": "2020-04-13T00:00:00+00:00", "type": "P,B,M" },
+      
+      { "name": "May Day", "date": "2020-05-01T00:00:00+00:00", "type": "P,B,M" },
+      { "name": "Wesak full moon poya day", "date": "2020-05-07T00:00:00+00:00", "type": "F,P,B,M" },
+      { "name": "Day following wesak full moon poya", "date": "2020-05-08T00:00:00+00:00", "type": "P,B,M" },
+      { "name": "Ramazan festival", "date": "2020-05-25T00:00:00+00:00", "type": "P,B" },
+      
+      { "name": "Poson full moon poya day", "date": "2020-06-05T00:00:00+00:00", "type": "F,P,B,M" },
+      
+      { "name": "Esala full moon poya day", "date": "2020-07-04T00:00:00+00:00", "type": "F,P,B,M" },
+      
+      { "name": "Hajj festival", "date": "2020-08-01T00:00:00+00:00", "type": "P,B" },
+      { "name": "Nikini full moon poya day", "date": "2020-08-03T00:00:00+00:00", "type": "F,P,B,M" },
+      
+      { "name": "Binara full moon poya day", "date": "2020-09-01T00:00:00+00:00", "type": "F,P,B,M" },
+      
+      { "name": "Adhi-Vap full moon poya day", "date": "2020-10-01T00:00:00+00:00", "type": "F,P,B,M" },
+      { "name": "Prophet Muhammad's Birthday", "date": "2020-10-30T00:00:00+00:00", "type": "P,B,M" },
+      { "name": "Vap full moon poya day", "date": "2020-10-30T00:00:00+00:00", "type": "F,P,B,M" },
+      
+      { "name": "Deepavali day", "date": "2020-11-14T00:00:00+00:00", "type": "P,B" },
+      { "name": "Ill full moon poya day", "date": "2020-11-29T00:00:00+00:00", "type": "F,P,B,M" },
+      
+      { "name": "Christmas Day", "date": "2020-12-25T00:00:00+00:00", "type": "P,B,M" },
+      { "name": "Unduwap full moon poya day", "date": "2020-12-29T00:00:00+00:00", "type": "F,P,B,M" }
     ]
   },
   {
