@@ -204,7 +204,7 @@
         </Grid>
 
         <!-- holidays for month -->
-        <ListView Grid.Row="3" Margin="15,0" ItemsSource="{Binding MonthModel.Holidays}">
+        <ListView Grid.Row="3" HasUnevenRows="True" Margin="15,0" ItemsSource="{Binding MonthModel.Holidays}">
                <ListView.Header>
                       <Label Text="Holidays"
                              FontSize="16"
@@ -214,21 +214,22 @@
                <ListView.ItemTemplate>
                       <DataTemplate x:DataType="{x:Type common:MonthHolidaysModel}">
                              <ViewCell>
-                                    <StackLayout Orientation="Horizontal" Spacing="15">
+                                    <StackLayout Orientation="Horizontal" Spacing="15" Padding="0,15">
                                            <Label Text="{Binding Date, StringFormat='{0:dd}'}"
                                                   FontSize="18"
                                                   FontAttributes="Bold"
-                                                  WidthRequest="22"
-                                                  VerticalOptions="CenterAndExpand"
+                                                  WidthRequest="26"
+                                                  VerticalOptions="StartAndExpand"
                                                   VerticalTextAlignment="Center" />
                                            <Label Text="{Binding Type}"
+                                                  Margin="0,5"
                                                   FontSize="12"
                                                   WidthRequest="40"
-                                                  VerticalOptions="CenterAndExpand"
+                                                  VerticalOptions="StartAndExpand"
                                                   VerticalTextAlignment="Center"  />
                                            <Label Text="{Binding Name}"
                                                   FontSize="17"
-                                                  VerticalOptions="CenterAndExpand"
+                                                  VerticalOptions="StartAndExpand"
                                                   VerticalTextAlignment="Center"  />
                                     </StackLayout>
                              </ViewCell>
