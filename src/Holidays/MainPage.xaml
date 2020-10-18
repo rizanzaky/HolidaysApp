@@ -210,7 +210,8 @@
 		        Text="Holidays"
 		        FontSize="16"
 		        TextTransform="Uppercase" />
-		<Line Grid.Row="3" StrokeThickness="0.5" X1="0" X2="0.1" Margin="15,0,0,0" BackgroundColor="DarkSlateGray" VerticalOptions="End" HorizontalOptions="FillAndExpand" />
+		<BoxView Grid.Row="3" HeightRequest="0.5" Margin="15,0,0,0" BackgroundColor="DarkSlateGray" VerticalOptions="End" HorizontalOptions="FillAndExpand" />
+		
 		<ListView Grid.Row="4" HasUnevenRows="True" Margin="0,-10,0,0" ItemsSource="{Binding MonthModel.Holidays}">
 			<ListView.Header>
 			</ListView.Header>
