@@ -117,10 +117,4 @@ namespace Holidays
                 .Where(w => w.Date.Month == month);
         }
     }
-
-    public class MonthModel
-    {
-        public DateTime ActiveMonth { get; set; }
-        public IEnumerable<MonthHolidaysModel> Holidays { get; set; }
-    }
 }
