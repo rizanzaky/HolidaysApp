@@ -15,7 +15,6 @@ namespace Holidays
 {
     public class MainPageViewModel : INotifyPropertyChanged
     {
-        private DateTime _activeMonth;
         private MonthModel _monthModel;
 
         public MainPageViewModel()
@@ -35,13 +34,9 @@ namespace Holidays
                         ActiveMonth = active, Holidays = GetHolidaysForMonth(active.Year, active.Month)
                     };
                 }
-
-                // Reload(GetHolidaysForMonth());
             });
             SetThisMonthCommand = new Command(() =>
             {
-                // ActiveMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
-                // Reload(GetHolidaysForMonth());
                 MonthModel = new MonthModel
                 {
                     ActiveMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1),
@@ -51,19 +46,6 @@ namespace Holidays
         }
 
         private List<AnnualHolidaysModel> AnnualHolidays { get; } = new List<AnnualHolidaysModel>();
-
-        // public DateTime ActiveMonth
-        // {
-        //     get => _activeMonth;
-        //     set
-        //     {
-        //         _activeMonth = value;
-        //         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ActiveMonth)));
-        //     }
-        // }
-
-        // public ObservableCollection<MonthHolidaysModel> Holidays { get; } =
-        //     new ObservableCollection<MonthHolidaysModel>();
 
         public MonthModel MonthModel
         {
@@ -82,11 +64,9 @@ namespace Holidays
 
         private async Task InitializeAsync()
         {
-            //
             MonthModel = new MonthModel {ActiveMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1)};
 
             await LoadAnnualHolidaysAsync();
-            // Reload(GetHolidaysForMonth());
             MonthModel = new MonthModel
             {
                 ActiveMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1),
@@ -136,18 +116,6 @@ namespace Holidays
             return AnnualHolidays.FirstOrDefault(f => f.Year == year)?.Holidays
                 .Where(w => w.Date.Month == month);
         }
-
-        // private void Reload(IEnumerable<MonthHolidaysModel> monthHolidays)
-        // {
-        //     Holidays.Clear();
-        //     if (monthHolidays == null)
-        //     {
-        //         return;
-        //     }
-        //
-        //     monthHolidays = monthHolidays.OrderBy(o => o.Date);
-        //     foreach (var monthHoliday in monthHolidays) Holidays.Add(monthHoliday);
-        // }
     }
 
     public class MonthModel
